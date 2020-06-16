@@ -15,6 +15,7 @@ def application(environ, start_response):
         db.insert(str(params['key'][0]), str(params['value'][0]))
         start_response('200 OK', headers)
         return ['Inserted'.encode()]
+    
     elif path == '/select':
         s = db.select_one(str(params['key'][0]))
         start_response('200 OK', headers)
@@ -22,6 +23,7 @@ def application(environ, start_response):
             return [s.encode()]
         else:
             return ['NULL'.encode()]
+        
     elif path == '/delete':
         start_response('200 OK', headers)
         s = db.select_one(str(params['key'][0]))
@@ -30,6 +32,7 @@ def application(environ, start_response):
             return ['Deleted'.encode()]
         else:
             return ['NULL'.encode()]
+        
     elif path == '/update':
         start_response('200 OK', headers)
         s = db.select_one(str(params['key'][0]))
@@ -38,6 +41,7 @@ def application(environ, start_response):
             return ['Updated'.encode()]
         else:
             return ['NULL'.encode()]
+        
     else:
         start_response('404 Not Found', headers)
         return ['Status 404: Resource not found'.encode()]
