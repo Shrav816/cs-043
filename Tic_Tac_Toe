@@ -1,7 +1,17 @@
+# Okay, so, changes. inputPlayerLetter() is now a part of Board, not Player.
+# Attributes bo and le have been replaced with brd and letter.
+# Attribute move is a variable. It's used as a function parameter.
+# Everything from line 88 to 122. This is the actual game, not the
+# functions. Ran into multiple errors, fixed everything that came up.
+# I finished player_one's turn, I'm hoping you can do player_two.
+# We can do the other stuff (numbers in boxes, time module, etc) later.
+
+
 import random
 
+
 class Board():
-    def __init__(self):
+    def __init__(self, brd):
         self.brd = brd
 
     def drawBoard(self):
@@ -19,65 +29,99 @@ class Board():
         print(' ' + self.brd[1] + ' | ' + self.brd[2] + ' | ' + self.brd[3])
         print('   |   |')
 
+    def inputPlayerLetter(self):
+        symbol = ''
+        while (symbol != 'X') and (symbol != 'O'):
+            print('Do you want to be X or O?')
+            symbol = str(input().upper())
+
+        if symbol == 'X':
+            return ['X', 'O']
+        else:
+            return ['O', 'X']
+
     def isBoardFull(self):
         # Return True if every space on the board has been taken. Otherwise return False.
         for i in range(1, 10):
-            if self.brd[i] == '':
+            if self.brd[i] == ' ':
                 return False
         return True
 
 
 class Player(Board):
-    def __init__(self, brd, letter, move, bo, le):
+    def __init__(self, brd, letter):
         super().__init__(brd)
         self.letter = letter
-        self.move = move
-        self.bo = bo
-        self.le = le
 
-    def inputPlayerLetter(self):
-        symbol = ''
-        while not (symbol == 'X' or symbol == 'O'):
-            print('Do you want to be X or O?')
-            symbol = input().upper()
-
-            if symbol == 'X':
-                return ['X', 'O']
-            else:
-                return ['O', 'X']
-
-    def makeMove(self):
-        self.brd[self.move] = self.letter
+    def whoGoesFirst(self):
+        # Randomly choose which player goes first.
+        if random.randint(1, 2) == 1:
+            return 'Player 1'
+        else:
+            return 'Player 2'
 
     def isWinner(self):
-        return ((self.bo[7] == self.le and self.bo[8] == self.le and self.bo[9] == self.le) or
-                (self.bo[4] == self.le and self.bo[5] == self.le and self.bo[6] == self.le) or
-                (self.bo[1] == self.le and self.bo[2] == self.le and self.bo[3] == self.le) or
-                (self.bo[7] == self.le and self.bo[4] == self.le and self.bo[1] == self.le) or
-                (self.bo[8] == self.le and self.bo[5] == self.le and self.bo[2] == self.le) or
-                (self.bo[9] == self.le and self.bo[6] == self.le and self.bo[3] == self.le) or
-                (self.bo[7] == self.le and self.bo[5] == self.le and self.bo[3] == self.le) or
-                (self.bo[9] == self.le and self.bo[5] == self.le and self.bo[1] == self.le))
+        return ((self.brd[7] == self.letter and self.brd[8] == self.letter and self.brd[9] == self.letter) or
+                (self.brd[4] == self.letter and self.brd[5] == self.letter and self.brd[6] == self.letter) or
+                (self.brd[1] == self.letter and self.brd[2] == self.letter and self.brd[3] == self.letter) or
+                (self.brd[7] == self.letter and self.brd[4] == self.letter and self.brd[1] == self.letter) or
+                (self.brd[8] == self.letter and self.brd[5] == self.letter and self.brd[2] == self.letter) or
+                (self.brd[9] == self.letter and self.brd[6] == self.letter and self.brd[3] == self.letter) or
+                (self.brd[7] == self.letter and self.brd[5] == self.letter and self.brd[3] == self.letter) or
+                (self.brd[9] == self.letter and self.brd[5] == self.letter and self.brd[1] == self.letter))
 
-    def isSpaceFree(self):
-        return self.brd[self.move] == ' '
+    def isSpaceFree(self, move):
+        return self.brd[int(move)] == ' '
 
     def getPlayerMove(self):
-        move = ' '
-        while move not in list(range(1, 10)) or not self.isSpaceFree():
+        move = ''
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(move):
             print('What is your next move?')
             move = input()
-        return int(move)
+        move = int(move)
+        return move
+
+    def makeMove(self, move):
+        self.brd[int(move)] = self.letter
+
+    def playAgain(self):
+        print('Do you want to play again?')
+        return input().lower().startswith('y')
 
 
-def whoGoesFirst():
-    # Randomly choose which player goes first.
-    if random.randint(0, 1) == 0:
-        return 'player 1'
-    else:
-        return 'player 2'
+print('Welcome to Tic Tac Toe!')
 
+while True:
+    theBoard = [' '] * 10
+    actual_board = Board(theBoard)
+    letter_one, letter_two = actual_board.inputPlayerLetter()
+    player_one = Player(theBoard, letter_one)
+    player_two = Player(theBoard, letter_two)
+    turn = player_one.whoGoesFirst()
+    print(turn + ' will go first.')
+    gameIsPlaying = True
 
+    while gameIsPlaying:
+        if turn == 'Player 1':
+            actual_board.drawBoard()
+            move = player_one.getPlayerMove()
+            player_one.makeMove(move)
+            actual_board.drawBoard()
+
+            if player_one.isWinner():
+                actual_board.drawBoard()
+                print('Hooray! You\'ve won!')
+                gameIsPlaying = False
+            else:
+                if actual_board.isBoardFull():
+                    actual_board.drawBoard()
+                    print('The game is a tie!')
+                    gameIsPlaying = False
+                else:
+                    turn = 'Player 2'
+        if turn == 'Player 2':
+            print('Here you go... Player 2\'s turn!')
+            break
 # _____________________________________________________________________________________________________________________
 # Tic Tac Toe
 
