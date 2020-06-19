@@ -6,6 +6,7 @@ def helloWorld():
 
 def funkyfunction():
   print('Hopefully this works.')
+  print("I added this from PyCharm")
   
 helloWorld()
 funkyfunction()
