@@ -3,7 +3,7 @@
 # Attribute move is a variable. It's used as a function parameter.
 # Everything from line 91 to 125. This is the actual game, not the
 # functions. Ran into multiple errors, fixed everything that came up.
-# I finished player_one's turn, I'm hoping you can do player_two.
+# I finished player_one's turn, I'm hoping you can do player_two. (starts from line 123)
 # We can do the other stuff (numbers in boxes, time module, etc) later.
 
 
