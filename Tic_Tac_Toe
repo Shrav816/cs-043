@@ -3,7 +3,7 @@ import random
 class Board():
     def __init__(self):
         self.brd = brd
-        
+
     def drawBoard(self):
         # This function prints out the board that it was passed.
 
@@ -25,6 +25,7 @@ class Board():
             if self.brd[i] == '':
                 return False
         return True
+
 
 class Player(Board):
     def __init__(self, brd, letter, move, bo, le):
@@ -68,12 +69,14 @@ class Player(Board):
             move = input()
         return int(move)
 
+
 def whoGoesFirst():
-    #Randomly choose which player goes first.
-    if random.randint (0, 1) == 0:
+    # Randomly choose which player goes first.
+    if random.randint(0, 1) == 0:
         return 'player 1'
     else:
         return 'player 2'
+
 
 # _____________________________________________________________________________________________________________________
 # Tic Tac Toe
