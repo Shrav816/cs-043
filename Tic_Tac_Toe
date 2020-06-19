@@ -17,12 +17,7 @@ class Board():
         print('   |   |')
         print(' ' + brd[1] + ' | ' + brd[2] + ' | ' + brd[3])
         print('   |   |')
-
-    def isSpaceFree(self, brd, move):
-        # Return true if the passed move is free on the passed board.
-        return brd[move] == ' '
-
-    def isBoardFull(self, brd):
+    def isBoardFull(self):
         # Return True if every space on the board has been taken. Otherwise return False.
         for i in range(1, 10):
             for i in range(1,10):
