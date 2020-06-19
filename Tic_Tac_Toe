@@ -68,6 +68,9 @@ class Player(Board):
             print('What is your next move?')
             move = input()
         return int(move)
+    def playAgain(self):
+        print("Do you want to play again?")
+        input().lower().startswith('y')
 
 
 def whoGoesFirst():
