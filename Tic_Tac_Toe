@@ -17,12 +17,12 @@ class Board():
         print('   |   |')
         print(' ' + brd[1] + ' | ' + brd[2] + ' | ' + brd[3])
         print('   |   |')
+
     def isBoardFull(self):
         # Return True if every space on the board has been taken. Otherwise return False.
         for i in range(1, 10):
-            for i in range(1,10):
-                if self.brd[i] == '':
-                    return False
+            if self.brd[i] == '':
+                return False
         return True
 
 
