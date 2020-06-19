@@ -1,3 +1,4 @@
+import random
 
 class Board():
     def __init__(self):
@@ -45,7 +46,7 @@ class Player(Board):
                 return ['O', 'X']
 
     def makeMove(self):
-        self.board[self.move] = self.letter
+        self.brd[self.move] = self.letter
 
     def isWinner(self):
         return ((self.bo[7] == self.le and self.bo[8] == self.le and self.bo[9] == self.le) or
@@ -67,11 +68,17 @@ class Player(Board):
             move = input()
         return int(move)
 
+def whoGoesFirst():
+    #Randomly choose which player goes first.
+    if random.randint (0, 1) == 0:
+        return 'player 1'
+    else:
+        return 'player 2'
 
 # _____________________________________________________________________________________________________________________
 # Tic Tac Toe
 
-import random
+'''import random
 
 def drawBoard(board):
     # This function prints out the board that it was passed.
@@ -255,4 +262,4 @@ while True:
                     turn = 'player'
 
     if not playAgain():
-        break
+        break'''
