@@ -2,20 +2,20 @@
 class Board():
     def __init__(self):
         self.brd = brd
-    def drawBoard(self, brd):
+        
+    def drawBoard(self):
         # This function prints out the board that it was passed.
 
-        # "board" is a list of 10 strings representing the board (ignore index 0)
         print('   |   |')
-        print(' ' + brd[7] + ' | ' + brd[8] + ' | ' + brd[9])
-        print('   |   |')
-        print('-----------')
-        print('   |   |')
-        print(' ' + brd[4] + ' | ' + brd[5] + ' | ' + brd[6])
+        print(' ' + self.brd[7] + ' | ' + self.brd[8] + ' | ' + self.brd[9])
         print('   |   |')
         print('-----------')
         print('   |   |')
-        print(' ' + brd[1] + ' | ' + brd[2] + ' | ' + brd[3])
+        print(' ' + self.brd[4] + ' | ' + self.brd[5] + ' | ' + self.brd[6])
+        print('   |   |')
+        print('-----------')
+        print('   |   |')
+        print(' ' + self.brd[1] + ' | ' + self.brd[2] + ' | ' + self.brd[3])
         print('   |   |')
 
     def isBoardFull(self):
@@ -24,6 +24,48 @@ class Board():
             if self.brd[i] == '':
                 return False
         return True
+
+class Player(Board):
+    def __init__(self, brd, letter, move, bo, le):
+        super().__init__(brd)
+        self.letter = letter
+        self.move = move
+        self.bo = bo
+        self.le = le
+
+    def inputPlayerLetter(self):
+        symbol = ''
+        while not (symbol == 'X' or symbol == 'O'):
+            print('Do you want to be X or O?')
+            symbol = input().upper()
+
+            if symbol == 'X':
+                return ['X', 'O']
+            else:
+                return ['O', 'X']
+
+    def makeMove(self):
+        self.board[self.move] = self.letter
+
+    def isWinner(self):
+        return ((self.bo[7] == self.le and self.bo[8] == self.le and self.bo[9] == self.le) or
+                (self.bo[4] == self.le and self.bo[5] == self.le and self.bo[6] == self.le) or
+                (self.bo[1] == self.le and self.bo[2] == self.le and self.bo[3] == self.le) or
+                (self.bo[7] == self.le and self.bo[4] == self.le and self.bo[1] == self.le) or
+                (self.bo[8] == self.le and self.bo[5] == self.le and self.bo[2] == self.le) or
+                (self.bo[9] == self.le and self.bo[6] == self.le and self.bo[3] == self.le) or
+                (self.bo[7] == self.le and self.bo[5] == self.le and self.bo[3] == self.le) or
+                (self.bo[9] == self.le and self.bo[5] == self.le and self.bo[1] == self.le))
+
+    def isSpaceFree(self):
+        return self.brd[self.move] == ' '
+
+    def getPlayerMove(self):
+        move = ' '
+        while move not in list(range(1, 10)) or not self.isSpaceFree():
+            print('What is your next move?')
+            move = input()
+        return int(move)
 
 
 # _____________________________________________________________________________________________________________________
