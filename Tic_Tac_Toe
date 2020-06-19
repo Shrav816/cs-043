@@ -18,6 +18,17 @@ class Board():
         print(' ' + brd[1] + ' | ' + brd[2] + ' | ' + brd[3])
         print('   |   |')
 
+    def isSpaceFree(self, brd, move):
+        # Return true if the passed move is free on the passed board.
+        return brd[move] == ' '
+
+    def isBoardFull(self, brd):
+        # Return True if every space on the board has been taken. Otherwise return False.
+        for i in range(1, 10):
+            if isSpaceFree(brd, i):
+                return False
+        return True
+
 
 # _____________________________________________________________________________________________________________________
 # Tic Tac Toe
