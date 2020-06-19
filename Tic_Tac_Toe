@@ -1,7 +1,7 @@
 # Okay, so, changes. inputPlayerLetter() is now a part of Board, not Player.
 # Attributes bo and le have been replaced with brd and letter.
 # Attribute move is a variable. It's used as a function parameter.
-# Everything from line 88 to 122. This is the actual game, not the
+# Everything from line 91 to 125. This is the actual game, not the
 # functions. Ran into multiple errors, fixed everything that came up.
 # I finished player_one's turn, I'm hoping you can do player_two.
 # We can do the other stuff (numbers in boxes, time module, etc) later.
