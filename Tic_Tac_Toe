@@ -116,12 +116,28 @@ while True:
                 if actual_board.isBoardFull():
                     actual_board.drawBoard()
                     print('The game is a tie!')
-                    gameIsPlaying = False
+                    break
                 else:
                     turn = 'Player 2'
-        if turn == 'Player 2':
+        else:
             print('Here you go... Player 2\'s turn!')
-            break
+            actual_board.drawBoard()
+            move = player_two.getPlayerMove()
+            player_two.makeMove(move)
+            actual_board.drawBoard()
+            if player_two.isWinner():
+                actual_board.drawBoard()
+                print('Hooray! You\'ve won!')
+                gameIsPlaying = False
+            else:
+                if actual_board.isBoardFull():
+                    actual_board.drawBoard()
+                    print('The game is a tie!')
+                    break
+                else:
+                    turn = 'Player 1'
+    if not player_one.playAgain() or player_two.playAgain():
+        break
 # _____________________________________________________________________________________________________________________
 # Tic Tac Toe
 
