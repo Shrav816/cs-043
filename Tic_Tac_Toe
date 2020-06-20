@@ -10,17 +10,17 @@ class Board():
     def drawBoard(self):
         # This function prints out the board that it was passed.
 
-        print('       |      |     ')
-        print('   ' + self.brd[7] + '   |  ' + self.brd[8] + '   |  ' + self.brd[9])
-        print('       |      |     ')
-        print('---------------------')
-        print('       |      |     ')
-        print('   ' + self.brd[4] + '   |  ' + self.brd[5] + '   |  ' + self.brd[6])
-        print('       |      |     ')
-        print('---------------------')
-        print('       |      |     ')
-        print('   ' + self.brd[1] + '   |  ' + self.brd[2] + '   |  ' + self.brd[3])
-        print('       |      |      ')
+        print('       |       |     ')
+        print('   ' + self.brd[7] + '   |   ' + self.brd[8] + '   |   ' + self.brd[9])
+        print('       |       |     ')
+        print('-----------------------')
+        print('       |       |     ')
+        print('   ' + self.brd[4] + '   |   ' + self.brd[5] + '   |   ' + self.brd[6])
+        print('       |       |     ')
+        print('-----------------------')
+        print('       |       |     ')
+        print('   ' + self.brd[1] + '   |   ' + self.brd[2] + '   |   ' + self.brd[3])
+        print('       |       |      ')
 
     def inputPlayerLetter(self):
         # Players select their letters.
