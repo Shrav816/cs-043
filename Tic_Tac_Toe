@@ -1,12 +1,10 @@
-# Made it more user-friendly by adding some print statements that indicate which player has which letter
-# and whose turn it is. I also imported the time module.
-
 import random
 import time
 
 
 class Board():
     def __init__(self, brd):
+        # Initializes data attribute brd.
         self.brd = brd
 
     def drawBoard(self):
@@ -25,6 +23,7 @@ class Board():
         print('   |   |')
 
     def inputPlayerLetter(self):
+        # Players select their letters.
         symbol = ''
         while (symbol != 'X') and (symbol != 'O'):
             print('Do you want to be X or O?')
@@ -45,6 +44,7 @@ class Board():
 
 class Player(Board):
     def __init__(self, brd, letter):
+        # Initializes data attributes brd and letter.
         super().__init__(brd)
         self.letter = letter
 
@@ -56,6 +56,7 @@ class Player(Board):
             return 'Player 2'
 
     def isWinner(self):
+        # Checks if a player has won.
         return ((self.brd[7] == self.letter and self.brd[8] == self.letter and self.brd[9] == self.letter) or
                 (self.brd[4] == self.letter and self.brd[5] == self.letter and self.brd[6] == self.letter) or
                 (self.brd[1] == self.letter and self.brd[2] == self.letter and self.brd[3] == self.letter) or
@@ -66,9 +67,11 @@ class Player(Board):
                 (self.brd[9] == self.letter and self.brd[5] == self.letter and self.brd[1] == self.letter))
 
     def isSpaceFree(self, move):
+        # Returns true if a space is free.
         return self.brd[int(move)] == ' '
 
     def getPlayerMove(self):
+        # Asks for player's move.
         move = ''
         while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.isSpaceFree(move):
             print('What is your next move?')
@@ -77,6 +80,7 @@ class Player(Board):
         return move
 
     def makeMove(self, move):
+        # Makes move on the board.
         self.brd[int(move)] = self.letter
 
     def playAgain(self):
@@ -87,6 +91,7 @@ class Player(Board):
 print('Welcome to Tic Tac Toe!')
 
 while True:
+    # Creates the board as well as three objects.
     theBoard = [' '] * 10
     actual_board = Board(theBoard)
     letter_one, letter_two = actual_board.inputPlayerLetter()
@@ -102,6 +107,7 @@ while True:
     gameIsPlaying = True
 
     while gameIsPlaying:
+        # Player one's turn
         if turn == 'Player 1':
             print('It\'s ' + turn + '\'s turn...')
             move = player_one.getPlayerMove()
@@ -119,6 +125,7 @@ while True:
                 else:
                     turn = 'Player 2'
         else:
+            # Player two's turn
             print('It\'s ' + turn + '\'s turn...')
             move = player_two.getPlayerMove()
             player_two.makeMove(move)
