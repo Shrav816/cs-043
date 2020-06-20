@@ -10,15 +10,15 @@ class Board():
     def drawBoard(self):
         # This function prints out the board that it was passed.
 
-        print('       |       |     ')
+        print('7      |8      |9    ')
         print('   ' + self.brd[7] + '   |   ' + self.brd[8] + '   |   ' + self.brd[9])
         print('       |       |     ')
         print('-----------------------')
-        print('       |       |     ')
+        print('4      |5      |6    ')
         print('   ' + self.brd[4] + '   |   ' + self.brd[5] + '   |   ' + self.brd[6])
         print('       |       |     ')
         print('-----------------------')
-        print('       |       |     ')
+        print('1      |2      |3    ')
         print('   ' + self.brd[1] + '   |   ' + self.brd[2] + '   |   ' + self.brd[3])
         print('       |       |      ')
 
@@ -101,7 +101,7 @@ while True:
     print('Player one\'s letter: ' + letter_one)
     print('Player two\'s letter: ' + letter_two + '\n')
     turn = player_one.whoGoesFirst()
-    print(turn + ' will go first.')
+    print(turn + ' will go first.\n')
     actual_board.drawBoard()
 
     gameIsPlaying = True
@@ -109,7 +109,7 @@ while True:
     while gameIsPlaying:
         # Player one's turn
         if turn == 'Player 1':
-            print('It\'s ' + turn + '\'s turn...')
+            print('\nIt\'s ' + turn + '\'s turn...')
             move = player_one.getPlayerMove()
             player_one.makeMove(move)
             time.sleep(0.25)
@@ -126,7 +126,7 @@ while True:
                     turn = 'Player 2'
         else:
             # Player two's turn
-            print('It\'s ' + turn + '\'s turn...')
+            print('\nIt\'s ' + turn + '\'s turn...')
             move = player_two.getPlayerMove()
             player_two.makeMove(move)
             time.sleep(0.25)
