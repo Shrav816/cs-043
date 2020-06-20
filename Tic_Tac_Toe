@@ -50,7 +50,7 @@ class Player(Board):
 
     def whoGoesFirst(self):
         # Randomly choose which player goes first.
-        if random.randint(1, 2) == 1:
+        if random.randint(0, 1) == 0:
             return 'Player 1'
         else:
             return 'Player 2'
