@@ -1,5 +1,6 @@
-# Tic Tac Toe
-# Two players; uses OOP; additional features for more user convenience
+# Tic Tac Toe game
+# Two players; uses OOP; additional features for user convenience
+
 
 import random
 import time
