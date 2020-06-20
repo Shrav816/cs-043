@@ -1,3 +1,6 @@
+# Made it more user-friendly by adding some print statements that indicate which player has which letter
+# and whose turn it is. I also imported the time module.
+
 import random
 import time
 
