@@ -1,9 +1,5 @@
-# Fixed the board-printing-twice problem and the playAgain() problem
-# Also added a 'It's Player __'s turn' that is printed before each turn
-
-
 import random
-
+import time
 
 class Board():
     def __init__(self, brd):
@@ -92,6 +88,8 @@ while True:
     letter_one, letter_two = actual_board.inputPlayerLetter()
     player_one = Player(theBoard, letter_one)
     player_two = Player(theBoard, letter_two)
+    print('Player one\'s letter: ' + letter_one)
+    print('Player two\'s letter: ' + letter_two + '\n')
     turn = player_one.whoGoesFirst()
     print(turn + ' will go first.')
     actual_board.drawBoard()
@@ -102,10 +100,11 @@ while True:
             print('It\'s ' + turn + '\'s turn...')
             move = player_one.getPlayerMove()
             player_one.makeMove(move)
+            time.sleep(0.25)
             actual_board.drawBoard()
 
             if player_one.isWinner():
-                print('Hooray! You\'ve won!')
+                print('Hooray! Player 1 is the winner!')
                 gameIsPlaying = False
             else:
                 if actual_board.isBoardFull():
@@ -117,10 +116,11 @@ while True:
             print('It\'s ' + turn + '\'s turn...')
             move = player_two.getPlayerMove()
             player_two.makeMove(move)
+            time.sleep(0.25)
             actual_board.drawBoard()
 
             if player_two.isWinner():
-                print('Hooray! You\'ve won!')
+                print('Hooray! Player 2 is the winner!')
                 gameIsPlaying = False
             else:
                 if actual_board.isBoardFull():
