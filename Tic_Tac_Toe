@@ -88,7 +88,7 @@ class Player(Board):
         return input().lower().startswith('y')
 
 
-print('Welcome to Tic Tac Toe!')
+print('Welcome to Tic Tac Toe!\n')
 
 while True:
     # Creates the board as well as three objects.
