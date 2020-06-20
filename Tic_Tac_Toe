@@ -2,7 +2,7 @@ import random
 import time
 
 
-class Board():
+class Board:
     def __init__(self, brd):
         # Initializes data attribute brd.
         self.brd = brd
