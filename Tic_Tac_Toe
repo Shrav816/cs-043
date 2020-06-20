@@ -9,16 +9,15 @@ class Board():
 
     def drawBoard(self):
         # This function prints out the board that it was passed.
-
-        print('       |       |     ')
+        print('7      |8      |9    ')
         print('   ' + self.brd[7] + '   |   ' + self.brd[8] + '   |   ' + self.brd[9])
         print('       |       |     ')
         print('-----------------------')
-        print('       |       |     ')
+        print('4      |5      |6     ')
         print('   ' + self.brd[4] + '   |   ' + self.brd[5] + '   |   ' + self.brd[6])
         print('       |       |     ')
         print('-----------------------')
-        print('       |       |     ')
+        print('1      |2      |3    ')
         print('   ' + self.brd[1] + '   |   ' + self.brd[2] + '   |   ' + self.brd[3])
         print('       |       |      ')
 
